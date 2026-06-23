@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Loan Services Overview
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="mb-4">Loan Services</h1>
+    <p>Explore our full range of home loan services and choose the option that suits your needs.</p>
+
+    <div class="row g-4 mt-4">
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3>Home Purchase</h3>
+                    <p>Get expert guidance for buying your dream home.</p>
+                    <a href="{% url 'home_purchase' %}" class="btn btn-primary">Learn more</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3>Home Construction</h3>
+                    <p>Loan support for building a new home or expansion.</p>
+                    <a href="{% url 'construction' %}" class="btn btn-primary">Learn more</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3>Renovation</h3>
+                    <p>Renovate your home with flexible financing.</p>
+                    <a href="{% url 'renovation' %}" class="btn btn-primary">Learn more</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4 mt-4">
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3>Loan Against Property</h3>
+                    <p>Use property equity to fund urgent needs.</p>
+                    <a href="{% url 'lap' %}" class="btn btn-primary">Learn more</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3>Balance Transfer</h3>
+                    <p>Save money by transferring your home loan.</p>
+                    <a href="{% url 'balance_transfer' %}" class="btn btn-primary">Learn more</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3>Top Up Loan</h3>
+                    <p>Get extra funds on your existing home loan.</p>
+                    <a href="{% url 'topup' %}" class="btn btn-primary">Learn more</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

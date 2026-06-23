@@ -1,0 +1,283 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+      content="Home Loan Consultant in Palakkad. 20+ years experience, 2500+ successful loan cases. Home Purchase, Construction, Renovation, Balance Transfer and Loan Against Property services.">
+
+<meta name="keywords"
+      content="home loan palakkad, housing loan palakkad, lic housing finance palakkad, home loan consultant kerala, loan against property palakkad">
+
+<meta name="author"
+      content="Manikandan K">
+
+<meta name="robots"
+      content="index, follow">
+    <title>{% block title %}Palakkad Home Loans{% endblock %}</title>
+
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="icon" href="{% static 'images/favicon.png' %}">
+
+
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <div class="container">
+
+        <a class="navbar-brand fw-bold" href="{% url 'home' %}">
+            🏠 Palakkad Home Loans
+        </a>
+
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <div class="collapse navbar-collapse"
+             id="navbarNav">
+
+            <ul class="navbar-nav ms-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="{% url 'home' %}">
+                        Home
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="{% url 'about' %}">
+                        About
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="{% url 'services' %}">
+                        Services
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="{% url 'emi_calculator' %}">
+                        EMI Calculator
+                    </a>
+                </li>
+
+                <!-- Interest Rates removed -->
+
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="#contact">
+                        Contact
+                    </a>
+                </li>
+
+                <li class="nav-item ms-2">
+                    <a href="tel:9446809611"
+                       class="btn btn-warning btn-sm">
+                        📞 Call Now
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
+
+{% if messages %}
+
+<div class="container mt-3">
+    {% for message in messages %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% block content %}
+{% endblock %}
+
+<footer class="text-white py-5 mt-5">
+
+
+<div class="container">
+
+    <div class="row mb-4">
+
+        <div class="col-md-3 mb-4">
+            <h5>Palakkad Home Loans</h5>
+            <p class="small">
+                Expert home loan guidance and consulting services across Kerala.
+            </p>
+            <div class="social-links">
+                <a href="https://wa.me/919446809611" target="_blank" title="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="tel:9446809611" title="Call">
+                    <i class="fas fa-phone"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <h5>Quick Links</h5>
+            <ul class="list-unstyled">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'services' %}">Services</a></li>
+                <li><a href="{% url 'about' %}">About Us</a></li>
+                <li><a href="{% url 'emi_calculator' %}">EMI Calculator</a></li>
+            </ul>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <h5>Our Services</h5>
+            <ul class="list-unstyled">
+                <li><a href="{% url 'home_purchase' %}">Home Purchase</a></li>
+                <li><a href="{% url 'construction' %}">Home Construction</a></li>
+                <li><a href="{% url 'lap' %}">Loan Against Property</a></li>
+                <li><a href="{% url 'balance_transfer' %}">Balance Transfer</a></li>
+                <li><a href="{% url 'topup' %}">Top Up Loan</a></li>
+            </ul>
+        </div>
+
+        <div class="col-md-3 mb-4">
+            <h5>Contact Info</h5>
+            <p class="small">
+                <strong>Phone:</strong><br>
+                <a href="tel:9446809611">9446 809 611</a>
+            </p>
+            <p class="small">
+                <strong>Service Areas:</strong><br>
+                All districts in Kerala
+            </p>
+        </div>
+
+    </div>
+
+    <hr class="footer-divider">
+
+    <div class="row align-items-center">
+
+        <div class="col-md-6 text-center text-md-start">
+            <p class="mb-0">
+                © 2026 Palakkad Home Loans. All Rights Reserved.
+            </p>
+        </div>
+
+        <div class="col-md-6 text-center text-md-end">
+            <small>
+                Operated by Manikandan K, Home Loan Consultant. 
+                Not affiliated with LIC Housing Finance Ltd.
+            </small>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+</footer>
+
+<a href="https://wa.me/919446809611"
+target="_blank"
+style="
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+padding:15px;
+border-radius:50%;
+font-size:24px;
+text-decoration:none;
+z-index:999;
+">
+💬 </a>
+
+<button id="scrollToTop" class="scroll-to-top" aria-label="Scroll to top">
+  ↑
+</button>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+// Intersection Observer for Scroll Animations
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver(function(entries) {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+      observer.unobserve(entry.target);
+    }
+  });
+}, observerOptions);
+
+// Observe all cards, sections, and testimonials
+document.querySelectorAll('.card, .testimonial-card, section h2, section h3').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(30px)';
+  el.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+  observer.observe(el);
+});
+
+// Smooth scroll for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  });
+});
+
+// Scroll-to-Top Button
+const scrollToTopBtn = document.getElementById('scrollToTop');
+
+window.addEventListener('scroll', () => {
+  if (window.pageYOffset > 300) {
+    scrollToTopBtn.classList.add('show');
+  } else {
+    scrollToTopBtn.classList.remove('show');
+  }
+});
+
+scrollToTopBtn.addEventListener('click', () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+
+{% block title %}
+EMI Calculator
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <h1 class="text-center mb-4">
+        EMI Calculator
+    </h1>
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-6">
+
+            <div class="card shadow">
+
+                <div class="card-body">
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Loan Amount (₹)
+                        </label>
+
+                        <input type="number"
+                               id="amount"
+                               class="form-control">
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Interest Rate (%)
+                        </label>
+
+                        <input type="number"
+                               id="rate"
+                               class="form-control">
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Tenure (Years)
+                        </label>
+
+                        <input type="number"
+                               id="years"
+                               class="form-control">
+
+                    </div>
+
+                    <button onclick="calculateEMI()"
+                            class="btn btn-primary w-100">
+
+                        Calculate EMI
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div class="card mt-4 shadow">
+
+                <div class="card-body">
+
+                    <h4 id="emi">
+                        EMI: ₹0
+                    </h4>
+
+                    <h5 id="interest">
+                        Total Interest: ₹0
+                    </h5>
+
+                    <h5 id="payment">
+                        Total Payment: ₹0
+                    </h5>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+function calculateEMI() {
+
+    let P = parseFloat(
+        document.getElementById("amount").value
+    );
+
+    let annualRate = parseFloat(
+        document.getElementById("rate").value
+    );
+
+    let years = parseFloat(
+        document.getElementById("years").value
+    );
+
+    let r = annualRate / 12 / 100;
+
+    let n = years * 12;
+
+    let emi =
+        (P * r * Math.pow(1 + r, n)) /
+        (Math.pow(1 + r, n) - 1);
+
+    let totalPayment = emi * n;
+
+    let totalInterest =
+        totalPayment - P;
+
+    document.getElementById(
+        "emi"
+    ).innerHTML =
+        "EMI: ₹" +
+        emi.toFixed(0);
+
+    document.getElementById(
+        "interest"
+    ).innerHTML =
+        "Total Interest: ₹" +
+        totalInterest.toFixed(0);
+
+    document.getElementById(
+        "payment"
+    ).innerHTML =
+        "Total Payment: ₹" +
+        totalPayment.toFixed(0);
+}
+
+</script>
+
+{% endblock %}

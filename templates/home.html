@@ -1,0 +1,434 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Palakkad Home Loans
+{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+    <div class="container text-center">
+
+
+    <h1 class="display-3 fw-bold">
+        Trusted Home Loan Guidance 
+        <br>
+         Home Loans Made Simple
+    </h1>
+    <p class="fs-4">
+        LIC Housing finance Loan Assistance
+    </p>
+
+    <p class="lead mt-4">
+        20+ Years Experience • 2500+ Successful Loan Cases
+    </p>
+
+    <p class="fs-5">
+        Expert assistance for Home Purchase, Construction,
+        Renovation, Balance Transfer and Loan Against Property.
+    </p>
+
+    <p>
+        Serving All Districts in Kerala.
+    </p>
+
+    <div class="mt-4">
+
+        <a href="tel:9446809611"
+           class="btn btn-warning btn-lg">
+            📞 Call Now
+        </a>
+
+        <a href="https://wa.me/919446809611"
+           target="_blank"
+           class="btn btn-success btn-lg">
+            💬 WhatsApp
+        </a>
+
+    </div>
+
+</div>
+
+
+</section>
+
+<section class="container py-5">
+
+
+<h2 class="text-center mb-5">
+    Why Choose Manikandan K?
+</h2>
+
+<div class="row">
+
+    <div class="col-md-3 mb-3">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+                <h2>20+</h2>
+                <p>Years Experience</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 mb-3">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+                <h2>2500+</h2>
+                <p>Successful Loan Cases</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 mb-3">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+                <h2>Fast</h2>
+                <p>Documentation Support</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 mb-3">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+                <h2>6+</h2>
+                <p>Districts Served</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+</section>
+
+<section class="bg-light py-5">
+
+
+<div class="container">
+
+    <h2 class="text-center mb-4">
+        Loan Services
+    </h2>
+
+    <div class="row">
+
+        <div class="col-md-3 mb-3">
+            <a href="{% url 'home_purchase' %}"
+               class="text-decoration-none">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-icon">🏠</div>
+                    <div class="card-body text-center">
+                        Home Purchase Loan
+                        <small class="d-block text-muted">
+                            Buy your dream home
+                        </small>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-3 mb-3">
+            <a href="/services/construction/"
+               class="text-decoration-none">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-icon">🏗</div>
+                    <div class="card-body text-center">
+                        Home Construction Loan
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-3 mb-3">
+            <a href="/services/renovation/"
+               class="text-decoration-none">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-icon">🔨</div>
+                    <div class="card-body text-center">
+                        Home Renovation Loan
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-3 mb-3">
+            <a href="/services/lap/"
+               class="text-decoration-none">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-icon">💰</div>
+                    <div class="card-body text-center">
+                        Loan Against Property
+                    </div>
+                </div>
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+
+</section>
+
+<section class="container py-5">
+
+
+<h2 class="text-center mb-4">
+    Areas We Serve
+</h2>
+
+<div class="row">
+    <div class="col-12 text-center">
+        <h3 class="mb-2">All Kerala</h3>
+        <p class="small">We provide services across the entire state of Kerala.</p>
+    </div>
+</div>
+
+
+</section>
+
+<section class="container py-5">
+
+
+<h2 class="text-center mb-4">
+    Free Home Loan Consultation
+</h2>
+
+<div class="row justify-content-center">
+
+    <div class="col-md-6">
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button type="submit"
+                    class="btn btn-primary w-100">
+
+                Submit Inquiry
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+</section>
+
+<section class="container py-5">
+
+
+<div class="card shadow">
+
+    <div class="card-body">
+
+        <h2 class="text-center mb-4">
+            Request a Call Back
+        </h2>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            {{ callback_form.as_p }}
+
+            <button type="submit"
+                    name="callback_submit"
+                    class="btn btn-success w-100">
+
+                Request Call Back
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+</section>
+
+<section class="container py-5">
+
+
+<h2 class="text-center mb-5">
+    Client Success Stories
+</h2>
+
+<div class="row">
+
+    <div class="col-md-4 mb-4">
+        <div class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <p class="testimonial-text">
+                "Manikandan K made our home purchase journey smooth and hassle-free. His expertise and guidance were invaluable. Highly recommended!"
+            </p>
+            <div class="testimonial-author">
+                <strong>Rajesh Kumar</strong>
+                <small>Home Purchase Loan</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+        <div class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <p class="testimonial-text">
+                "Best home loan consultant in Palakkad! Got the loan approved quickly with competitive rates. Thank you for the support!"
+            </p>
+            <div class="testimonial-author">
+                <strong>Priya Menon</strong>
+                <small>Home Construction Loan</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+        <div class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <p class="testimonial-text">
+                "Excellent documentation support and timely follow-ups. Manikandan K is professional and trustworthy. Highly satisfied!"
+            </p>
+            <div class="testimonial-author">
+                <strong>Arun</strong>
+                <small>Loan Against Property</small>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+</section>
+
+<div class="accordion" id="faqAccordion">
+
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faq1">
+                What documents are required for a home loan?
+            </button>
+        </h2>
+
+        <div id="faq1"
+             class="accordion-collapse collapse show">
+
+            <div class="accordion-body">
+                Identity proof, address proof,
+                income proof and property documents.
+            </div>
+
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faq2">
+                Can I transfer my existing home loan?
+            </button>
+        </h2>
+
+        <div id="faq2"
+             class="accordion-collapse collapse">
+
+            <div class="accordion-body">
+                Yes, balance transfer options are available.
+            </div>
+
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#faq3">
+                How long does approval take?
+            </button>
+        </h2>
+
+        <div id="faq3"
+             class="accordion-collapse collapse">
+
+            <div class="accordion-body">
+                Processing time depends on documentation
+                and lender verification.
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+</section>
+
+<section  id="contact" class="container py-5">
+
+
+<h2 class="text-center mb-4">
+    Contact Us
+</h2>
+
+<div class="row">
+
+    <div class="col-md-6">
+
+        <h4>Manikandan K</h4>
+
+        <p><strong>Home Loan Consultant</strong></p>
+
+        <p>📞 9446809611</p>
+
+        <p>📧 palakkadhomeloans@gmail.com</p>
+
+        <p>
+            📍I FLOOR, MANNIL ARCADE,
+            OPP. LIC OF INDIA, BRANCH I,
+            NEAR KSRTC, Shornur Rd,
+            Palakkad, Kerala - 678014
+        </p>
+
+        <a href="tel:9446809611"
+           class="btn btn-primary">
+            📞 Call Now
+        </a>
+
+        <a href="https://wa.me/919446809611"
+           target="_blank"
+           class="btn btn-success">
+            💬 WhatsApp
+        </a>
+
+    </div>
+
+    <div class="col-md-6">
+
+        <iframe
+            src="https://www.google.com/maps?q=Mannil%20Arcade%20Palakkad&output=embed"
+            width="100%"
+            height="350"
+            style="border:0;"
+            loading="lazy">
+        </iframe>
+
+    </div>
+
+</div>
+
+
+</section>
+
+{% endblock %}
