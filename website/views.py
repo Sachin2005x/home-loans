@@ -8,25 +8,38 @@ from django.shortcuts import render, redirect
 
 from .forms import CallbackForm, InquiryForm
 
-
 def home(request):
     inquiry_form = InquiryForm()
     callback_form = CallbackForm()
 
     if request.method == 'POST':
+
+        # Callback Form
         if 'callback_submit' in request.POST:
             callback_form = CallbackForm(request.POST)
+
             if callback_form.is_valid():
                 callback = callback_form.save()
-                print(f'Callback saved: {callback.name} / {callback.phone}')
-                print(f'Notifying via email to: {getattr(settings, "NOTIFICATION_EMAIL", None)}')
-                notify_callback_request(callback)
+
+                try:
+                    notify_callback_request(callback)
+                except Exception as e:
+                    print(f"Callback Notification Error: {e}")
+
                 return redirect('callback_success')
+
+        # Inquiry Form
         else:
             inquiry_form = InquiryForm(request.POST)
+
             if inquiry_form.is_valid():
                 inquiry = inquiry_form.save()
-                notify_inquiry(inquiry)
+
+                try:
+                    notify_inquiry(inquiry)
+                except Exception as e:
+                    print(f"Inquiry Notification Error: {e}")
+
                 return redirect('success')
 
     return render(request, 'home.html', {
@@ -89,6 +102,8 @@ def about(request):
 
 
 def notify_inquiry(inquiry):
+    print("DEBUG: notify_inquiry started")
+
     subject = 'New Home Loan Inquiry'
     message = (
         f'New inquiry received:\n'
@@ -98,6 +113,10 @@ def notify_inquiry(inquiry):
         f'Loan Amount: {inquiry.loan_amount}\n'
         f'Received: {inquiry.created_at}\n'
     )
+
+    print(message)  # Debugging: print the message to console
+
+
     send_notifications(subject, message)
 
 
@@ -112,47 +131,49 @@ def notify_callback_request(callback):
     )
     send_notifications(subject, message)
 
-
 def send_notifications(subject, message):
     recipient = getattr(settings, 'NOTIFICATION_EMAIL', None)
+
     if not recipient and getattr(settings, 'ADMINS', None):
         recipient = settings.ADMINS[0][1]
     if not recipient:
-        recipient = 'admin@example.com'
-
+        return False  # No recipient available
+    
+    # email notification
     try:
-        result = send_mail(
+        send_mail(
             subject,
             message,
             settings.DEFAULT_FROM_EMAIL,
             [recipient],
-            fail_silently=False,
+            fail_silently=False,   # IMPORTANT CHANGE
         )
-        print(f'✓ Email sent successfully to {recipient}')
-    except Exception as exc:
-        # Print the actual error so user can debug
-        print(f'✗ Email notification failed: {exc}')
-        import traceback
-        traceback.print_exc()
+    except Exception as e:
+        print("EMAIL ERROR:", str(e))
 
-    if getattr(settings, 'WHATSAPP_API_TOKEN', '') and getattr(settings, 'WHATSAPP_PHONE_ID', '') and getattr(settings, 'WHATSAPP_RECIPIENT_NUMBER', ''):
-        payload = json.dumps({
-            'messaging_product': 'whatsapp',
-            'to': settings.WHATSAPP_RECIPIENT_NUMBER,
-            'type': 'text',
-            'text': {'body': message},
-        }).encode('utf-8')
-
-        request = urllib.request.Request(
-            f'https://graph.facebook.com/v16.0/{settings.WHATSAPP_PHONE_ID}/messages',
-            data=payload,
-            headers={
-                'Authorization': f'Bearer {settings.WHATSAPP_API_TOKEN}',
-                'Content-Type': 'application/json',
-            },
-            method='POST',
-        )
+    # whatsapp notification
+    if(
+getattr(settings, 'WHATSAPP_API_TOKEN', '') and getattr(settings, 'WHATSAPP_PHONE_ID', '') and getattr(settings, 'WHATSAPP_RECIPIENT_NUMBER', '')
+    ):
         try:
+            payload = json.dumps({
+                'messaging_product': 'whatsapp',
+                'to': settings.WHATSAPP_RECIPIENT_NUMBER,
+                'type': 'text',
+                'text': {'body': message},
+            }).encode('utf-8')
+
+            request = urllib.request.Request(
+                f'https://graph.facebook.com/v16.0/{settings.WHATSAPP_PHONE_ID}/messages',
+                data=payload,
+                headers={
+                    'Authorization': f'Bearer {settings.WHATSAPP_API_TOKEN}',
+                    'Content-Type': 'application/json',
+                },
+                method='POST',
+            )
             urllib.request.urlopen(request, timeout=15)
-        except urllib.error.URLError:
-            pass
+        except urllib.error.URLError as e:
+             print("WHATSAPP ERROR:", str(e))
+    return True                   
+
