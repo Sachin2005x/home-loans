@@ -132,7 +132,11 @@ def notify_callback_request(callback):
     send_notifications(subject, message)
 
 def send_notifications(subject, message):
-    recipient = getattr(settings, 'NOTIFICATION_EMAIL', None)
+    try:
+        print("email disabled temporariliy")
+    except Exception:
+        pass    
+    return True
 
     if not recipient and getattr(settings, 'ADMINS', None):
         recipient = settings.ADMINS[0][1]
