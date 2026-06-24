@@ -137,7 +137,7 @@ def send_notifications(subject, message):
     if not recipient and getattr(settings, 'ADMINS', None):
         recipient = settings.ADMINS[0][1]
     if not recipient:
-        return False  # No recipient available
+        return True  # No recipient available
     
     # email notification
     try:
