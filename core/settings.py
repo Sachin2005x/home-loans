@@ -28,8 +28,11 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default='False') == 'True'
 
-ALLOWED_HOSTS = ['127.0.0.1',
-    'localhost']
+ALLOWED_HOSTS = [
+    'palakkadhomeloans.onrender.com',
+    'localhost',
+    '127.0.0.1',
+]
 
 
 # Application definition
@@ -134,9 +137,7 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 NOTIFICATION_EMAIL = 'palakkadhomeloans@gmail.com'  # Where inquiry notifications should be delivered
 
-ADMINS = [
-    ('Admin', 'palakkadhomeloans@gmail.com'),
-]
+ADMINS = []
 
 
 WHATSAPP_API_TOKEN = ''  # Set your WhatsApp Business API token here for real notifications.
