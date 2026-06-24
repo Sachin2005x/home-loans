@@ -137,17 +137,13 @@ def send_notifications(subject, message):
     if not recipient and getattr(settings, 'ADMINS', None):
         recipient = settings.ADMINS[0][1]
     if not recipient:
-        return True  # No recipient available
+        return False # No recipient available
     
     # email notification
     try:
-        send_mail(
-            subject,
-            message,
-            settings.DEFAULT_FROM_EMAIL,
-            [recipient],
-            fail_silently=False,   # IMPORTANT CHANGE
-        )
+        print("EMAIL DISABLED FOR TESTING")
+        print(subject)   # IMPORTANT CHANGE
+        print(message)
     except Exception as e:
         print("EMAIL ERROR:", str(e))
 
